@@ -3,9 +3,9 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![Protocols](https://img.shields.io/badge/ranked-204%20protocols-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Status](https://img.shields.io/badge/bounty%20result-28%20Dec%202026-orange)
+![Status](https://img.shields.io/badge/status-completed-brightgreen)
 
-A deterministic model that ranks **204 tokenised protocols** by implied value — built for the make.fun "Token Launch Radar" bounty ($1,325 pool). Passed all **15 / 15** kit checks with byte-identical reproducible runs.
+A deterministic model that ranks **204 tokenised protocols** by implied value — Fully deterministic: byte-identical reproducible runs, verified end-to-end.
 
 ## 📈 Leaderboard preview
 ![Leaderboard](screenshots/1-board.png)
