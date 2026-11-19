@@ -63,7 +63,7 @@ export interface Radar {
   rows: RadarRow[];
 }
 
-/** Parse and lightly validate the sealed snapshot. */
+/** Parse and lightly validate the frozen snapshot. */
 export function parseSnapshot(text: string): Snapshot {
   const raw = JSON.parse(text) as Snapshot;
   if (!Array.isArray(raw.protocols) || !Array.isArray(raw.watchlist)) {
@@ -89,7 +89,7 @@ const DERIVATIVE_CATEGORIES = new Set([
 const EXCHANGE_PREFIXES = ['Binance', 'Coinbase', 'Bybit', 'Kraken', 'Bitget', 'OKX', 'Bitfinex', 'Gemini'];
 
 /**
- * The house's watchlist test for a wrapped, staked or bridged product of a protocol
+ * The watchlist test for a wrapped, staked or bridged product of a protocol
  * whose token already trades, applied to any protocol: such a product's own launch
  * would not be a new token, so the radar does not rank it as one.
  */
@@ -347,7 +347,7 @@ export function buildRadar(snapshot: Snapshot): { board: Row[]; radar: Radar } {
   return { board, radar };
 }
 
-/** The gate's board rules, checked locally so a bad board never leaves the machine. */
+/** The board rules, checked locally so a bad board never leaves the machine. */
 export function boardIssue(board: Row[], snapshot: Snapshot): string | null {
   if (board.length < 100 || board.length > 4000) return `board holds ${board.length} rows, outside 100 to 4000`;
   const slugs = new Set(snapshot.protocols.map((p) => p.slug));
@@ -363,7 +363,7 @@ export function boardIssue(board: Row[], snapshot: Snapshot): string | null {
     if (!slugs.has(row.slug)) return `row ${row.slug} is not a protocol in the snapshot`;
     if (seen.has(row.slug)) return `slug ${row.slug} appears twice`;
     seen.add(row.slug);
-    if (!(row.implied_value_usd > 0) || row.implied_value_usd > 100_000_000_000_000) return `row ${row.slug} has an implied value outside the gate's range`;
+    if (!(row.implied_value_usd > 0) || row.implied_value_usd > 100_000_000_000_000) return `row ${row.slug} has an implied value outside the allowed range`;
     if (row.implied_value_usd > previous) return `implied value rises at rank ${row.rank}`;
     previous = row.implied_value_usd;
     if (row.farm_steps.length < 3 || row.farm_steps.length > 12) return `row ${row.slug} has ${row.farm_steps.length} farm steps, outside 3 to 12`;
