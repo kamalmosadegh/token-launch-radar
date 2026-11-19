@@ -4,9 +4,9 @@
 // prices every pre-token protocol with the category-multiple model in lib/model.ts,
 // writes the ranked board to /output/board.json, writes the dashboard's data to
 // /output/data.js, copies this repository's dashboard/ and screenshots/ into /output,
-// and finishes by writing /output/dossier.json with the vendored make.fun library,
-// byte for byte the way the gate rebuilds it. The program is deterministic: the same
-// snapshot always writes the same bytes, because the grader runs it twice and compares.
+// and finishes by writing /output/dossier.json (a machine-readable summary of
+// the run). The program is deterministic: the same snapshot always writes the
+// same bytes.
 //
 // Local run:  mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts --input ../input/snapshot.json
 
